@@ -45,5 +45,18 @@ public class ScheduleController {
 
 
 
+    // 삭제 컨트롤러 추가
+    @DeleteMapping("/schedules/{id}")
+    public ResponseEntity delete(
+            @PathVariable long id,
+            @RequestBody DeleteRequest request
+    ) {
+
+        scheduleService.delete(id, request);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+
+
 
 }

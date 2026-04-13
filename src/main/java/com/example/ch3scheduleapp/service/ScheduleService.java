@@ -75,6 +75,7 @@ public class ScheduleService {
     }
 
 
+    // 스케쥴 수정 서비스
     @Transactional
     public UpdateScheduleResponse update(Long id, UpdateScheduleRequest request){
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
@@ -95,6 +96,17 @@ public class ScheduleService {
         );
 
     }
+
+    // 게시글 삭제 트랜잭션
+    @Transactional
+    public void delete(long id, DeleteRequest request){
+        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 일정입니다.")
+        );
+
+        scheduleRepository.delete(schedule);
+    }
+
 
 
 
