@@ -1,12 +1,11 @@
 package com.example.ch3scheduleapp.controller;
 
-import com.example.ch3scheduleapp.dto.CreateScheduleRequest;
-import com.example.ch3scheduleapp.dto.CreateScheduleResponse;
-import com.example.ch3scheduleapp.dto.GetOneScheduleResponse;
+import com.example.ch3scheduleapp.dto.*;
 import com.example.ch3scheduleapp.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +33,17 @@ public class ScheduleController {
     public GetOneScheduleResponse getOne(@PathVariable Long id) {
         return scheduleService.getOne(id);
     }
+
+    @Transactional
+    @PutMapping("/schedules/{id}")
+    public UpdateScheduleResponse update(
+            @PathVariable long id,
+            @RequestBody UpdateScheduleRequest request
+            ) {
+        return scheduleService.update(id, request);
+    }
+
+
 
 
 }
