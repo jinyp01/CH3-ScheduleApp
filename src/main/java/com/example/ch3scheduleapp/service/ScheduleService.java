@@ -15,7 +15,23 @@ public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
 
-    
+    @Transactional
+    public CreateScheduleResponse save(CreateScheduleRequest request){
+        Schedule schedule = new Schedule(
+                request.getTitle(),
+                request.getContent(),
+                request.getUsername(),
+                request.getPassword()
+        );
+        Schedule saveSchedule = scheduleRepository.save(schedule);
+
+        return  new CreateScheduleResponse(
+                saveSchedule.getTitle(),
+                saveSchedule.getContent(),
+                saveSchedule.getUsername()
+        );
+    }
+
 
 
 
