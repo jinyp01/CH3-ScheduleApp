@@ -28,7 +28,9 @@ public class ScheduleService {
         return  new CreateScheduleResponse(
                 saveSchedule.getTitle(),
                 saveSchedule.getContent(),
-                saveSchedule.getUsername()
+                saveSchedule.getUsername(),
+                saveSchedule.getCreated_at(),
+                saveSchedule.getUpdated_at()
         );
     }
 
