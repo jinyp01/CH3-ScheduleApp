@@ -23,9 +23,16 @@ public class ScheduleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+    // 유저 이름으로 일정 모두 검색
     @GetMapping("/schedules/{username}")
     public List<GetOneScheduleResponse> getAllSchedules(@PathVariable String username) {
-        return ResponseEntity.status(HttpStatus.FOUND).body(scheduleService.getAll(username)).getBody();
+        return scheduleService.getAll(username);
+    }
+
+    // id로 일정검색
+    @GetMapping("/schedules/{id}")
+    public GetOneScheduleResponse getOne(@PathVariable Long id) {
+        return scheduleService.getOne(id);
     }
 
 

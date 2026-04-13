@@ -46,6 +46,7 @@ public class ScheduleService {
         for(Schedule schedule : schedules){
             if(schedule.getUsername().equals(username)){
                 GetOneScheduleResponse dto =  new GetOneScheduleResponse(
+                        schedule.getId(),
                         schedule.getTitle(),
                         schedule.getContent(),
                         schedule.getUsername(),
@@ -57,6 +58,24 @@ public class ScheduleService {
         }
         return dtos;
     }
+
+    // 입력한 id 로 일정 검색
+    public GetOneScheduleResponse getOne(Long id){
+        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 일정입니다.")
+        );
+        return new GetOneScheduleResponse(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getUsername(),
+                schedule.getCreated_at(),
+                schedule.getUpdated_at()
+        );
+    }
+
+
+
 
 
 
