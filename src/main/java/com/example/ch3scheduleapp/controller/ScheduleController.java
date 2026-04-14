@@ -23,7 +23,7 @@ public class ScheduleController {
     }
 
     // 유저 이름으로 일정 모두 검색
-    @GetMapping("/schedules/{username}")
+    @GetMapping("/schedules/users/{username}")
     public List<GetOneScheduleResponse> getAllSchedules(@PathVariable String username) {
         return scheduleService.getAll(username);
     }

@@ -6,13 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@Table(name="Schedules")
+@Table(name="schedules")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 public class Schedule {
 
     @Id
@@ -24,6 +27,7 @@ public class Schedule {
     private String username;
     private String password;
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime created_at;
     @LastModifiedDate
     private LocalDateTime updated_at;

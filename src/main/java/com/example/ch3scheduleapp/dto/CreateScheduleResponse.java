@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.time.LocalDateTime;
 
 @Getter
+
 public class CreateScheduleResponse {
     private final String title;
     private final String content;
