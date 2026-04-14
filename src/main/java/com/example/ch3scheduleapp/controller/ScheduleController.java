@@ -22,25 +22,25 @@ public class ScheduleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    // 유저 이름으로 일정 모두 검색
+    // 유저 이름으로 검색 메서드 이름 변경 및 상태코드 반환
     @GetMapping("/schedules/users/{username}")
-    public List<GetOneScheduleResponse> getAllSchedules(@PathVariable String username) {
-        return scheduleService.getAll(username);
+    ResponseEntity<List<GetOneScheduleResponse>> getUserSchedules(@PathVariable String username) {
+        return ResponseEntity.status(HttpStatus.OK).body(scheduleService.getAll(username));
     }
 
-    // id로 일정검색
+
+    // 스케쥴 id로 일정 단건 조회
     @GetMapping("/schedules/{id}")
-    public GetOneScheduleResponse getOne(@PathVariable Long id) {
-        return scheduleService.getOne(id);
+    ResponseEntity<GetOneScheduleResponse> getOne(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(scheduleService.getOne(id));
     }
 
-    @Transactional
+    // 일정 수정 진행
     @PutMapping("/schedules/{id}")
-    public UpdateScheduleResponse update(
-            @PathVariable long id,
-            @RequestBody UpdateScheduleRequest request
-            ) {
-        return scheduleService.update(id, request);
+    ResponseEntity<UpdateScheduleResponse> update(
+            @PathVariable Long id,
+            UpdateScheduleRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(scheduleService.update(id, request));
     }
 
 
@@ -55,8 +55,4 @@ public class ScheduleController {
         scheduleService.delete(id, request);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
-
-
-
 }
